@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 450,
+  "background": "#e9dac7",
+  "layer": [
+    {
+      "data": {
+        "url": "ne_110m_admin_0_countries.json",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "projection": {
+        "type": "equalEarth"
+      }
+    },
+    {
+      "data": {"url": "Global Missing Migrants Dataset.csv"},
+      "mark": {"type": "circle"},
+      "projection": {"type": "equalEarth"},
+      "encoding": {
+        "longitude": {"field": "long", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "Total Number of Dead and Missing",
+          "type": "quantitative",
+          "title": "Dead and missing"
+        },
+        "color": {
+          "field": "Migration route abbr",
+          "type": "nominal",
+          "scale": {
+              "range": [
+                  "#e6194b", "#3cb44b", "#ffe119", "#4363d8", "#f58231", 
+                  "#911eb4", "#46f0f0", "#f032e6", "#bcf60c", "#fabebe", 
+                  "#008080", "#e6beff", "#794044", "#fffac8", "#800000", 
+                  "#aaffc3", "#808000", "#ffd8b1", "#000075", "#808080", 
+                  "#065535", "#000000", "#008080", "#fa8072", "#c39797", 
+                  "#daa520"
+              ]
+          },
+          "legend": {
+            "title": "Migration route"}},
+            "tooltip": [
+              {"field": "Migration route", "type": "nominal"},
+              {
+                "field": "Total Number of Dead and Missing",
+                "type": "quantitative",
+                "title": "Number of Dead and Missing"
+              },
+              {
+                "field":"Cause of Death",
+                "type": "nominal"
+              }
+            ]
+      }
+    }
+  ]
+}

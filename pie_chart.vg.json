@@ -1,0 +1,25 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "A pie chart showing the proportion of male and female.",
+    "width": 400,
+    "height": 250,
+    "data": {
+      "values": [
+        {"gender": "Male", "count": 28996},
+        {"gender": "Female", "count": 11934},
+        {"gender": "Child", "count": 6200}
+      ]
+    },
+    "mark": "arc",
+    "encoding": {
+      "theta": {"field": "count", "type": "quantitative"},
+      "color": {
+        "field": "gender",
+        "type": "nominal",
+        "legend": {"title": "Age"}
+        }
+      },
+    
+    "view": {"stroke": null}
+  }
+  

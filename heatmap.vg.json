@@ -1,0 +1,47 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "#e9dac7",
+    "width": 550,
+    "height": 350,
+    "data": {
+        "url":
+        "Global Missing Migrants Dataset.csv"
+    },
+    "transform": [
+        {
+          "filter": "datum['Migration route abbr'] !== 'Unknown'"
+        },
+        {
+          "aggregate": [
+            {"op": "sum", "field": "Total Number of Dead and Missing", "as": "Total Dead and Missing"}
+          ],
+          "groupby": ["Cause of Death", "Migration route abbr"]
+        }
+      ],
+    "mark":{"type": "rect", "tooltip": {"content": "data"}},
+    "encoding": {
+      "x": {
+        "field": "Migration route abbr",
+        "type": "nominal",
+        "axis": {"title": "Migration Route"}
+      },
+      "y": {
+        "field": "Cause of Death",
+        "type": "nominal",
+        "axis": {"title": "Cause of Death"},
+        "sort": {
+          "field": "Total Dead and Missing",
+          "order": "ascending"}
+      },
+      "color": {
+        "field": "Total Dead and Missing",
+        "type": "quantitative",
+        "scale": {
+          "domain": [10, 100, 500, 1000, 2000,5000],
+          "scheme": "blues"
+        },
+        "legend": {"title": "Dead and Missing"}
+      }
+    }
+  }
+  
